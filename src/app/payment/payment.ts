@@ -49,20 +49,29 @@ constructor(private fb: FormBuilder) {
 
     this.loading = true;
 
-    const token = this.tokenize();
+    // const token = this.tokenize();
+    const { cardNumber, cvc } = this.paymentForm.value;
 
+    // Immediately tokenize
+    const token = this.createToken(cardNumber, cvc);
+    console.log('Generated token:', token);
     this.callDummyPaymentAPI(token);
   }
 
-  /** Simulated client-side tokenization */
-  private tokenize(): string {
-    return btoa(
-      JSON.stringify({
-        token: 'tok_' + crypto.randomUUID(),
-        timestamp: Date.now()
-      })
-    );
+  private createToken(card: string, cvc: string): string {
+    console.log('Tokenizing card:', card, 'CVC:', cvc);
+    return crypto.randomUUID(); // simulate PSP token
   }
+
+  /** Simulated client-side tokenization */
+  // private tokenize(): string {
+  //   return btoa(
+  //     JSON.stringify({
+  //       token: 'tok_' + crypto.randomUUID(),
+  //       timestamp: Date.now()
+  //     })
+  //   );
+  // }
 
   /** Dummy API call */
   private callDummyPaymentAPI(token: string) {
