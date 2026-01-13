@@ -1,0 +1,63 @@
+<form
+  [formGroup]="paymentForm"
+  (ngSubmit)="submit()"
+  aria-label="Payment Form"
+  novalidate
+>
+  <!-- Card Number -->
+  <label for="cardNumber">Card Number</label>
+  <input
+    id="cardNumber"
+    type="text"
+    inputmode="numeric"
+    maxlength="16"
+    formControlName="cardNumber"
+    aria-describedby="cardNumberError"
+  />
+  <small id="cardNumberError" *ngIf="f['cardNumber'].touched && f['cardNumber'].invalid">
+    Enter a valid 16-digit card number
+  </small>
+
+  <!-- Expiry -->
+  <label for="expiry">Expiration Date (MM/YY)</label>
+  <input
+    id="expiry"
+    type="text"
+    placeholder="MM/YY"
+    formControlName="expiry"
+  />
+  <small *ngIf="f['expiry'].touched && f['expiry'].invalid">
+    Format must be MM/YY
+  </small>
+
+  <!-- CVC -->
+  <label for="cvc">CVC</label>
+  <input
+    id="cvc"
+    type="password"
+    maxlength="4"
+    inputmode="numeric"
+    formControlName="cvc"
+  />
+  <small *ngIf="f['cvc'].touched && f['cvc'].invalid">
+    3 or 4 digit CVC required
+  </small>
+
+  <!-- Postal Code -->
+  <label for="postal">Postal Code</label>
+  <input
+    id="postal"
+    type="text"
+    maxlength="5"
+    formControlName="postalCode"
+  />
+  <small *ngIf="f['postalCode'].touched && f['postalCode'].invalid">
+    Enter valid ZIP code
+  </small>
+
+  <button type="submit" [disabled]="paymentForm.invalid || loading">
+    {{ loading ? 'Processing...' : 'Pay Now' }}
+  </button>
+
+  <p class="message">{{ message }}</p>
+</form>
