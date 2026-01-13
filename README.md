@@ -57,3 +57,27 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Code Explanation
+1) Have created two components 
+    1) Card
+    2) Payment
+2) Card Component
+    1) calling the Payment Component inside card component
+3) Loading the Card Component through the Navigation
+4) Payment Components
+    1) Added HTML code
+    2) Added Basic Validation
+    3) Added A11y code inside it
+    4) generating the token from the mix of Card Number and CVC
+    5) then we are calling the DummyAPI with the token which we just created above (Step 4)
+    6) Then we navigate the Success page or Failure Page on depends on the API response
+5) Success Component
+    1) Added Success view inside it
+6) Failure Component
+    1) Added Failure view inside it
+
+7) Created Payment Service
+    1) Have call the makePayment with the token
+8) run the Npm install then ng serve then the code will run on http://localhost:4200/
+
